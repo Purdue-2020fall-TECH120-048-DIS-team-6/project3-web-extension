@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<HTML>
+    <Head>
+        <title>Vulnerability Detection Extension</title>
+        <script type="text/javascript" src="purify.min.js"></script>
+        <script>
+            function check_content(){
+                chrome.tabs.getSeclected(null,function(tab){
+                    var original = tab.getElementByTagName('HTML').innerHTML;
+                    var after = DOMPurify.sanitize(original);
+                    document.getElementById("debug").innerHTML=original;
+                    if(original!=after){
+                        var overlay = tab.createElement("div");
+                        overlay.setAttribute('id','overlay');
+                        overlay.style.position='fixed';
+                        overlay.style.width='100%';
+                        overlay.style.height='100%';
+                        overlay.style.cursor='pointer';
+                        overlay.style.display='block';
+                        overlay.style['background-color']='rgba(0,0,0,0.5)';
+                        overlay.style.['z-index']='2';
+                        
+                        tab.getElementById('body').appendChild(overlay);
+                        tab.getElementById("overlay").style.display = "block";
+                        document.getElementById('h5').innerHTML='Xss Detected';
+                    }
+                });
+            }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var checkPageButton = document.getElementById('check');
+            checkPageButton.addEventListener('click',check_content());
+        }, false);
+        </script>
+    </Head>
+    <Body>
+        <h1>Vulnerability Detection Extension</h1>
+        <h5>Nothing detected</h5>
+        <button id="check">Detect this page!</button>
+        <p id='debug'></p>
+    </Body>
+</HTML>
