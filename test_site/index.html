@@ -6,10 +6,12 @@
     <Body>
         <h1> This is the test site</h1>
         <p> This site implements a basic xss vulnarability </p>
+        <a href="/?input=123">hint</a>
         <form method='get' action='/'>
             <input type='text' name='input'>
             <input type='submit' value='submit'>
         </form>
+        <p>Your input will show here:</p>
     </Body>
 </HTML>
 
