@@ -4,7 +4,7 @@
         <title>Vulnerability Detection Extension</title>
         <script type="text/javascript" src="purify.min.js"></script>
         <script>
-            function check_content(){
+/*            function check_content(){
                 chrome.tabs.getSeclected(null,function(tab){
                     var original = tab.getElementByTagName('HTML').innerHTML;
                     var after = DOMPurify.sanitize(original);
@@ -30,12 +30,17 @@
         document.addEventListener('DOMContentLoaded', function() {
             var checkPageButton = document.getElementById('check');
             checkPageButton.addEventListener('click',check_content());
-        }, false);
+        }, false);*/
         </script>
     </Head>
     <Body>
         <h1>Vulnerability Detection Extension</h1>
-        <h5>Nothing detected</h5>
+        <h5>This sites information:</h5>
+        <h5>Server: PHP</h5>
+        <h5>Frontend Framework: None</h5>
+
+        <h3>Xss detected, blocked access!</h3>
+        <h3>Someone is trying to steal your information!</h3>
         <!--<button id="check">Detect this page!</button>
         <p id='debug'></p>-->
     </Body>
